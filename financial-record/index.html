@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Financial Record</title>
+<meta name="description" content="Track money in and out, monthly bills, instalments, credit cards and debts.">
+<meta name="theme-color" content="#ff6f4f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Financial Record">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@500;700;800&family=Nunito:wght@400;600;700;800&display=swap">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<!--APP-->
+<div class="shell">
+  <header class="topbar">
+    <a class="brand" href="#home"><span class="brand-mark" aria-hidden="true"></span>Financial Record</a>
+    <nav class="tabs" aria-label="Sections">
+      <a href="#home" data-view="home">Home</a>
+      <a href="#records" data-view="records">Records</a>
+      <a href="#bills" data-view="bills">Monthly bills</a>
+      <a href="#debts" data-view="debts">Debts</a>
+    </nav>
+    <div class="top-actions">
+      <button type="button" class="icon-btn" id="toggle-hide" aria-label="Hide amounts" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.7 9.4 1.5 12c1.2 2.6 5 7 10.5 7s9.3-4.4 10.5-7C21.3 9.4 17.5 5 12 5zm0 11.5a4.5 4.5 0 1 1 0-9 4.5 4.5 0 0 1 0 9zm0-2.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg>
+      </button>
+      <a class="icon-btn" href="#more" data-view="more" aria-label="Backup and settings">
+        <svg viewBox="0 0 24 24"><path d="M3 6h11v2H3zm14-2h2v6h-2zm-1 2h5v2h-5zM3 16h5v2H3zm7-2h2v6h-2zm3 2h8v2h-8z"/></svg>
+      </a>
+    </div>
+  </header>
+
+  <div id="sample-banner" class="banner" hidden>
+    <span>These are example records so you can see how it works.</span>
+    <button type="button" class="btn small" id="clear-sample">Clear examples</button>
+  </div>
+
+  <main id="main">
+    <section id="view-home" class="view"></section>
+    <section id="view-records" class="view" hidden></section>
+    <section id="view-bills" class="view" hidden></section>
+    <section id="view-debts" class="view" hidden></section>
+    <section id="view-more" class="view" hidden></section>
+  </main>
+
+  <nav class="bottombar" aria-label="Sections">
+    <a href="#home" data-view="home"><svg viewBox="0 0 24 24"><path d="M12 3 2.5 10.5l1.2 1.6L5 11.1V21h5.5v-6h3v6H19v-9.9l1.3 1 1.2-1.6z"/></svg>Home</a>
+    <a href="#records" data-view="records"><svg viewBox="0 0 24 24"><path d="M5 3h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm2 4v2h10V7zm0 4v2h10v-2zm0 4v2h6v-2z"/></svg>Records</a>
+    <button type="button" class="add-btn" data-add aria-label="Add a record"><span>+</span></button>
+    <a href="#bills" data-view="bills"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2zM5 9v10h14V9zm2 2h4v4H7z"/></svg>Bills</a>
+    <a href="#debts" data-view="debts"><svg viewBox="0 0 24 24"><path d="M9 4a4 4 0 1 1 0 8 4 4 0 0 1 0-8zm7.5 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6zM9 14c4 0 7 1.8 7 4v2H2v-2c0-2.2 3-4 7-4zm8.5 0c2.9.3 4.5 1.7 4.5 3.5V20h-4v-2c0-1.6-.6-2.9-1.7-3.9z"/></svg>Debts</a>
+  </nav>
+
+  <button type="button" class="fab" data-add aria-label="Add a record">+</button>
+</div>
+
+<dialog id="sheet" class="sheet"><form method="dialog" id="sheet-form" novalidate></form></dialog>
+<div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+<!--/APP-->
+<script src="app.js"></script>
+<script>
+  if ('serviceWorker' in navigator && location.protocol !== 'file:') {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+</script>
+</body>
+</html>
